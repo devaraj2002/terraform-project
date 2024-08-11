@@ -18,25 +18,6 @@ resource "aws_vpc" "one"{
     }
 }
 
-resource "aws_security_group" "sg" {
-  ingress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-}
-
- 
-
-
 resource "aws_subnet" "public"{
     vpc_id=aws_vpc.one.id
     cidr_block="10.0.0.0/16"
@@ -48,7 +29,7 @@ resource "aws_subnet" "public"{
 }
  
 resource "aws_instance" "two"{
-    vpc_security_group_ids=[aws_security_group.sg.id]
+    subnet_id=aws_subnet.public.id
     
     ami="ami-0ae8f15ae66fe8cda"
     instance_type="t2.micro"
