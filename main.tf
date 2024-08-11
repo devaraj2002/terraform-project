@@ -28,7 +28,7 @@ resource "aws_security_group" "sg" {
  
 resource "aws_subnet" "private"{
     vpc_id=aws_vpc.one.id
-    cidr_block="10.0.0.15/16"
+    cidr_block="10.0.0.0/16"
     availability_zone="us-east-1a"
     tags={
         Name="private-subnet"
@@ -38,7 +38,7 @@ resource "aws_subnet" "private"{
 
 resource "aws_subnet" "public"{
     vpc_id=aws_vpc.one.id
-    cidr_block="10.0.0.16/16"
+    cidr_block="10.0.0.0/16"
     availability_zone="us-east-1a"
     tags={
         Name="private-subnet"
