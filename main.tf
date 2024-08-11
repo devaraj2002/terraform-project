@@ -47,7 +47,7 @@ resource "aws_subnet" "public"{
 }
  
 resource "aws_instance" "two"{
-    subnet_id=aws_subnet.public-subnet.public
+    subnet_id=aws_subnet.public.id
     ami="ami-0ae8f15ae66fe8cda"
     instance_type="t2.micro"
     key_name="linux_1"
