@@ -34,7 +34,7 @@ resource "aws_instance" "two"{
     ami="ami-0ae8f15ae66fe8cda"
     instance_type="t2.micro"
     key_name="linux_1"
-    vpc_security_group_ids=[aws_security_group.sg.id]
+    
     tags={
         Name="web-server"
     }
