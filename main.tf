@@ -4,23 +4,27 @@ provider "aws"{
 
 resource "aws_vpc" "one"{
     cidr_block="10.0.0.0/16"
-    tegs={
+    tags={
         Name="my_vpc"
     }
 }
 
-resource "aws_security_group" "sg"{
-    ingress=[
-        {
-            cidr_block=["0.0.0.0"]
-            protocol="tcp"
-        }
-    ]
-     egress=[{
-        cidr_block=["0.0.0.0"]
-        protocol="-1"
-     }]
+resource "aws_security_group" "sg" {
+  ingress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
 }
+
  
 resource "aws_subnet" "private"{
     vpc_id=aws_vpc.one.id
